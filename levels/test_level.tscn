@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://1asavwjf8iqe"]
+
+[ext_resource type="PackedScene" uid="uid://cyki6g1y775vl" path="res://mobs/player/player.tscn" id="1_46lwt"]
+[ext_resource type="PackedScene" uid="uid://4sksn32cf6y6" path="res://objects/wall.tscn" id="2_x25rp"]
+
+[node name="test_level" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_46lwt")]
+position = Vector2(400, 400)
+
+[node name="walls" type="Node" parent="."]
+
+[node name="left_wall" parent="walls" instance=ExtResource("2_x25rp")]
+position = Vector2(5, 400)
+
+[node name="right_wall" parent="walls" instance=ExtResource("2_x25rp")]
+position = Vector2(795, 400)
+
+[node name="top_wall" parent="walls" instance=ExtResource("2_x25rp")]
+position = Vector2(400, 5)
+rotation = 1.5708
+
+[node name="bottom_wall" parent="walls" instance=ExtResource("2_x25rp")]
+position = Vector2(400, 795)
+rotation = 1.5708
