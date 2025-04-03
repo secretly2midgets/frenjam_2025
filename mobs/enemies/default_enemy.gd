@@ -11,6 +11,7 @@ extends CharacterBody2D
 var direction: Vector2
 
 func _ready() -> void:
+	position = Vector2(200.0, 200.0)
 	direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
 
 func _physics_process(delta: float) -> void:
