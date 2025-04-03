@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://4sksn32cf6y6"]
+[gd_scene load_steps=4 format=3 uid="uid://4sksn32cf6y6"]
+
+[ext_resource type="Script" uid="uid://cyx0a2bwsu8tf" path="res://objects/wall.gd" id="1_r71v4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hklci"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_r71v4"]
 
 [node name="wall" type="StaticBody2D"]
+script = ExtResource("1_r71v4")
 
 [node name="wall_collision_shape" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 40)
