@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed = 800
 
 func start(in_position: Vector2, in_direction: Vector2, offset: float) -> void:
+	$animated_bone.play()
 	position = in_position + offset*in_direction
 	velocity = speed*in_direction
 	

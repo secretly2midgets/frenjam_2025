@@ -1,9 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwa3ylkftvtwo"]
+[gd_scene load_steps=8 format=3 uid="uid://dwa3ylkftvtwo"]
 
-[ext_resource type="Texture2D" uid="uid://c0vwkmp2w11g0" path="res://mobs/bullet/circle.png" id="1_b64y6"]
 [ext_resource type="Script" uid="uid://djiuk4v7h8vuk" path="res://mobs/bullet/bullet.gd" id="1_hnp4o"]
+[ext_resource type="Texture2D" uid="uid://byrfoc5ohcl80" path="res://mobs/bullet/bone_2.png" id="2_4pegr"]
+[ext_resource type="Texture2D" uid="uid://dkjlv0lmgk7kg" path="res://mobs/bullet/bone_3.png" id="3_8xo2m"]
+[ext_resource type="Texture2D" uid="uid://dkcsnec5spiaw" path="res://mobs/bullet/bone_4.png" id="4_6f6x8"]
+[ext_resource type="Texture2D" uid="uid://b8ca7trovr4ia" path="res://mobs/bullet/bone_1.png" id="5_txvxu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hnp4o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b0tn1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4pegr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8xo2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6f6x8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_txvxu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="bullet" type="CharacterBody2D"]
 script = ExtResource("1_hnp4o")
@@ -11,6 +34,9 @@ script = ExtResource("1_hnp4o")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hnp4o")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.04, 0.04)
-texture = ExtResource("1_b64y6")
+[node name="animated_bone" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_b0tn1")
+frame = 1
+frame_progress = 0.978127
+speed_scale = 4.0
