@@ -1,5 +1,12 @@
 extends CharacterBody2D
 
+# ENEMY IDEAS
+# - Enemy that moves in square around map
+# - Enemy that seeks player directly
+# - Random walk enemy
+# - Enemy that flees/avoids bullets
+# - Enemy that hides in corner and shoots you
+
 @export var speed: float = 200
 var direction: Vector2
 
