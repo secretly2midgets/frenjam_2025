@@ -9,7 +9,7 @@ func _ready() -> void:
 	start_time = Time.get_unix_time_from_system()
 	last_enemy = 0.0
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var now_time: float = Time.get_unix_time_from_system()
 	
 	if now_time - start_time > 50:
