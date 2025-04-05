@@ -16,9 +16,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(speed * direction * delta)
+	
 	if collision:
-		collision_layer = collision.get_collider().get_collision_layer()
-		if collision_layer & 0b1 == 0b1: # wall
+		var thing_i_hit = collision.get_collider().get_collision_layer()
+		if thing_i_hit & 0b1 == 0b1: # wall
 			direction = direction.bounce(collision.get_normal()) 
-		elif collision_layer & 0b100 == 0b100: # bullet
+		elif thing_i_hit & 0b100 == 0b100: # bullet
 			queue_free()

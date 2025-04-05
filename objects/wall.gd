@@ -4,4 +4,4 @@ extends StaticBody2D
 
 func _on_level_end() -> void:
 	if isGate:
-		visible = false
+		queue_free()
