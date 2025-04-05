@@ -10,6 +10,7 @@ var back_sprite = preload("res://mobs/player/player_back.png")
 #Health related
 @export var health = 3
 @onready var invunerability_timer = $invulnerability_timer
+@onready var effects_animation = $effects_animation
 
 @export var move_speed = 200
 var Bullet = preload("res://mobs/bullet/bullet.tscn")
@@ -36,13 +37,15 @@ func _physics_process(delta: float) -> void:
 	get_input()
 	var collision = move_and_collide(velocity*delta)
 	if collision:
-		if collision_layer && 0b10000 == 0b10000: #Hit by enemy
+		if collision_layer & 0b10000 == 0b10000: #Hit by enemy
 			health -= 1
-			if health < 0: #Player dies if they
+			if health < 0: #Player dies if they hit 0 health
 				queue_free()
 			else:
+				effects_animation.play("flash")
+				effects_animation.queue("flash")
 				position = Vector2(400,400) # move back to the center
-	
+
 func change_sprite(shoot_direction: Vector2) -> void:
 	if shoot_direction[0] == 0:
 		if shoot_direction[1] > 0:
@@ -57,3 +60,7 @@ func change_sprite(shoot_direction: Vector2) -> void:
 		else:
 			$Sprite2D.texture = side_sprite
 	$Sprite2D.flip_h = shoot_direction[0] < 0
+
+func _on_invulnerability_timer_timeout() -> void:
+	# Turns off the blinking
+	effects_animation.play("rest")
