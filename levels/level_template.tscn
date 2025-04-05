@@ -7,9 +7,9 @@
 [node name="level_template" type="Node2D"]
 script = ExtResource("1_skox6")
 
-[node name="walls" type="Node" parent="."]
+[node name="walls" type="Node2D" parent="."]
 
-[node name="right" type="Node" parent="walls"]
+[node name="right" type="Node2D" parent="walls"]
 
 [node name="top" parent="walls/right" instance=ExtResource("3_8xmsw")]
 position = Vector2(795, 160)
@@ -25,7 +25,7 @@ isGate = true
 position = Vector2(795, 640)
 scale = Vector2(1, 0.4)
 
-[node name="left" type="Node" parent="walls"]
+[node name="left" type="Node2D" parent="walls"]
 
 [node name="top" parent="walls/left" instance=ExtResource("3_8xmsw")]
 position = Vector2(5, 160)
@@ -41,7 +41,7 @@ isGate = true
 position = Vector2(5, 640)
 scale = Vector2(1, 0.4)
 
-[node name="top" type="Node" parent="walls"]
+[node name="top" type="Node2D" parent="walls"]
 
 [node name="left" parent="walls/top" instance=ExtResource("3_8xmsw")]
 position = Vector2(160, 5)
@@ -60,7 +60,7 @@ position = Vector2(640, 5)
 rotation = 1.5708
 scale = Vector2(1, 0.4)
 
-[node name="bottom" type="Node" parent="walls"]
+[node name="bottom" type="Node2D" parent="walls"]
 
 [node name="left" parent="walls/bottom" instance=ExtResource("3_8xmsw")]
 position = Vector2(160, 795)
@@ -79,7 +79,7 @@ position = Vector2(640, 795)
 rotation = 1.5708
 scale = Vector2(1, 0.4)
 
-[node name="exits" type="Node" parent="."]
+[node name="exits" type="Node2D" parent="."]
 
 [node name="top_exit" parent="exits" instance=ExtResource("4_13k7l")]
 position = Vector2(400, -3)
@@ -89,13 +89,13 @@ scale = Vector2(10, 1)
 position = Vector2(803, 400)
 scale = Vector2(1, 10)
 
-[node name="bottom_exit" parent="exits" instance=ExtResource("4_13k7l")]
-position = Vector2(400, 803)
-scale = Vector2(10, 1)
-
 [node name="left_exit" parent="exits" instance=ExtResource("4_13k7l")]
 position = Vector2(-3, 400)
 scale = Vector2(1, 10)
+
+[node name="bottom_exit" parent="exits" instance=ExtResource("4_13k7l")]
+position = Vector2(400, 803)
+scale = Vector2(10, 1)
 
 [connection signal="level_complete" from="." to="walls/right/gate" method="_on_level_end"]
 [connection signal="level_complete" from="." to="walls/left/gate" method="_on_level_end"]
@@ -107,5 +107,5 @@ scale = Vector2(1, 10)
 [connection signal="level_complete" from="." to="exits/left_exit" method="_on_level_complete"]
 [connection signal="body_entered" from="exits/top_exit" to="." method="_on_top_exit_body_entered"]
 [connection signal="body_entered" from="exits/right_exit" to="." method="_on_right_exit_body_entered"]
-[connection signal="body_entered" from="exits/bottom_exit" to="." method="_on_bottom_exit_body_entered"]
 [connection signal="body_entered" from="exits/left_exit" to="." method="_on_left_exit_body_entered"]
+[connection signal="body_entered" from="exits/bottom_exit" to="." method="_on_bottom_exit_body_entered"]
