@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2p74362al5qw"
-path="res://.godot/imported/Growlith_1.png-09729a3e69fcd3eabc601589a52272d3.ctex"
+uid="uid://s88cnjf4qdll"
+path="res://.godot/imported/growlithe_2.png-de81c84062fd731eb2e96538338d0108.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mobs/growlith/Growlith_1.png"
-dest_files=["res://.godot/imported/Growlith_1.png-09729a3e69fcd3eabc601589a52272d3.ctex"]
+source_file="res://mobs/growlithe/growlithe_2.png"
+dest_files=["res://.godot/imported/growlithe_2.png-de81c84062fd731eb2e96538338d0108.ctex"]
 
 [params]
 
