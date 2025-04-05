@@ -7,6 +7,10 @@ var side_sprite = preload("res://mobs/player/player_side.png")
 var back_side_sprite = preload("res://mobs/player/player_back_side.png")
 var back_sprite = preload("res://mobs/player/player_back.png")
 
+#Health related
+@export var health = 3
+@onready var invunerability_timer = $invulnerability_timer
+
 @export var move_speed = 200
 var Bullet = preload("res://mobs/bullet/bullet.tscn")
 var fire_rate: float = 0.1 # number of seconds between bullets
@@ -30,7 +34,14 @@ func get_input() -> void:
 
 func _physics_process(delta: float) -> void:
 	get_input()
-	move_and_collide(velocity*delta)
+	var collision = move_and_collide(velocity*delta)
+	if collision:
+		if collision_layer && 0b10000 == 0b10000: #Hit by enemy
+			health -= 1
+			if health < 0: #Player dies if they
+				queue_free()
+			else:
+				position = Vector2(400,400) # move back to the center
 	
 func change_sprite(shoot_direction: Vector2) -> void:
 	if shoot_direction[0] == 0:
