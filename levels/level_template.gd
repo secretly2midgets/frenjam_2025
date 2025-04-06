@@ -23,10 +23,14 @@ var player: Node
 
 var next_level_scene = load("res://levels/test_level.tscn")
 
+# ready runs when the scene is added to the tree
 func _ready() -> void:
 	start_time = Time.get_unix_time_from_system()
 	last_enemy = 0.0
-	if !get_node("player"):
+	# this is basically a check to see if this is the first scene in the game or not
+	# we do it like this because we want to hand off the player from scene to scene in
+	# all cases except for the first
+	if !get_node_or_null("player"):
 		print(str(name) + " made a player")
 		player = Player_scene.instantiate()
 		player.position = level_size/2
@@ -91,6 +95,9 @@ func end_level() -> void:
 			enemy.queue_free()
 	already_ended_level = true
 
+# ============================================================================
+# exit zone functions below, they're all the same except for direction
+# TODO make these one function with different inputs
 
 func _on_top_exit_body_entered(body: Node2D) -> void:
 	if !leaving:
@@ -98,14 +105,14 @@ func _on_top_exit_body_entered(body: Node2D) -> void:
 		scrolling_direction = Vector2.DOWN
 		
 		# do some stuff to protect the state
-		get_node("exits/top_exit").monitoring = false  # turn off get to prevent double moving
+		get_node("exits/top_exit").set_deferred("monitoring", false)  # turn off get to prevent double moving
 		body.process_mode = Node.PROCESS_MODE_DISABLED # freeze the player
 		
 		# load the new level and hand player to it, then add new level to the tree
 		var next_level = next_level_scene.instantiate()
 		next_level.position = Vector2.UP*level_size  # have to move new level before reparenting player
 		get_node("player").reparent(next_level, true)
-		get_tree().root.add_child(next_level)
+		get_tree().root.call_deferred("add_child", next_level)
 		next_level.scrolling_direction = scrolling_direction
 		next_level.get_node("walls/bottom/gate").visible = false
 		next_level.level_started = false
@@ -116,14 +123,14 @@ func _on_right_exit_body_entered(body: Node2D) -> void:
 		scrolling_direction = Vector2.LEFT
 		
 		# do some stuff to protect the state
-		get_node("exits/right_exit").monitoring = false  # turn off get to prevent double moving
+		get_node("exits/right_exit").set_deferred("monitoring", false)  # turn off get to prevent double moving
 		body.process_mode = Node.PROCESS_MODE_DISABLED # freeze the player
 		
 		# load the new level and hand player to it, then add new level to the tree
 		var next_level = next_level_scene.instantiate()
 		next_level.position = Vector2.RIGHT*level_size  # have to move new level before reparenting player
 		get_node("player").reparent(next_level, true)
-		get_tree().root.add_child(next_level)
+		get_tree().root.call_deferred("add_child", next_level)
 		next_level.scrolling_direction = scrolling_direction
 		next_level.get_node("walls/left/gate").visible = false
 		next_level.level_started = false
@@ -134,14 +141,14 @@ func _on_bottom_exit_body_entered(body: Node2D) -> void:
 		scrolling_direction = Vector2.UP
 		
 		# do some stuff to protect the state
-		get_node("exits/bottom_exit").monitoring = false  # turn off get to prevent double moving
+		get_node("exits/bottom_exit").set_deferred("monitoring", false)  # turn off get to prevent double moving
 		body.process_mode = Node.PROCESS_MODE_DISABLED # freeze the player
 		
 		# load the new level and hand player to it, then add new level to the tree
 		var next_level = next_level_scene.instantiate()
 		next_level.position = Vector2.DOWN*level_size  # have to move new level before reparenting player
 		get_node("player").reparent(next_level, true)
-		get_tree().root.add_child(next_level)
+		get_tree().root.call_deferred("add_child", next_level)
 		next_level.scrolling_direction = scrolling_direction
 		next_level.get_node("walls/top/gate").visible = false
 		next_level.level_started = false
@@ -152,14 +159,14 @@ func _on_left_exit_body_entered(body: Node2D) -> void:
 		scrolling_direction = Vector2.RIGHT
 		
 		# do some stuff to protect the state
-		get_node("exits/left_exit").monitoring = false  # turn off get to prevent double moving
+		get_node("exits/left_exit").set_deferred("monitoring", false)  # turn off get to prevent double moving
 		body.process_mode = Node.PROCESS_MODE_DISABLED # freeze the player
 		
 		# load the new level and hand player to it, then add new level to the tree
 		var next_level = next_level_scene.instantiate()
 		next_level.position = Vector2.LEFT*level_size  # have to move new level before reparenting player
 		get_node("player").reparent(next_level, true)
-		get_tree().root.add_child(next_level)
+		get_tree().root.call_deferred("add_child", next_level)
 		next_level.scrolling_direction = scrolling_direction
 		next_level.get_node("walls/right/gate").visible = false
 		next_level.level_started = false
