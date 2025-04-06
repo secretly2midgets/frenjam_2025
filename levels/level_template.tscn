@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://mg0fbn24rvru"]
+
+[ext_resource type="Script" uid="uid://b7jvtlmoil3s1" path="res://levels/level_template.gd" id="1_skox6"]
+[ext_resource type="PackedScene" uid="uid://4sksn32cf6y6" path="res://objects/wall.tscn" id="3_8xmsw"]
+[ext_resource type="PackedScene" uid="uid://b8btbq5k6hmi6" path="res://objects/exit.tscn" id="4_13k7l"]
+
+[node name="level_template" type="Node2D"]
+script = ExtResource("1_skox6")
+
+[node name="walls" type="Node2D" parent="."]
+
+[node name="right" type="Node2D" parent="walls"]
+
+[node name="top" parent="walls/right" instance=ExtResource("3_8xmsw")]
+position = Vector2(795, 160)
+scale = Vector2(1, 0.4)
+
+[node name="gate" parent="walls/right" instance=ExtResource("3_8xmsw")]
+modulate = Color(0, 0.329412, 1, 1)
+position = Vector2(795, 400)
+scale = Vector2(1, 0.2)
+isGate = true
+
+[node name="bottom" parent="walls/right" instance=ExtResource("3_8xmsw")]
+position = Vector2(795, 640)
+scale = Vector2(1, 0.4)
+
+[node name="left" type="Node2D" parent="walls"]
+
+[node name="top" parent="walls/left" instance=ExtResource("3_8xmsw")]
+position = Vector2(5, 160)
+scale = Vector2(1, 0.4)
+
+[node name="gate" parent="walls/left" instance=ExtResource("3_8xmsw")]
+modulate = Color(0, 0.329412, 1, 1)
+position = Vector2(5, 400)
+scale = Vector2(1, 0.2)
+isGate = true
+
+[node name="bottom" parent="walls/left" instance=ExtResource("3_8xmsw")]
+position = Vector2(5, 640)
+scale = Vector2(1, 0.4)
+
+[node name="top" type="Node2D" parent="walls"]
+
+[node name="left" parent="walls/top" instance=ExtResource("3_8xmsw")]
+position = Vector2(160, 5)
+rotation = 1.5708
+scale = Vector2(1, 0.4)
+
+[node name="gate" parent="walls/top" instance=ExtResource("3_8xmsw")]
+modulate = Color(0, 0.329412, 1, 1)
+position = Vector2(400, 5)
+rotation = 1.5708
+scale = Vector2(1, 0.2)
+isGate = true
+
+[node name="right" parent="walls/top" instance=ExtResource("3_8xmsw")]
+position = Vector2(640, 5)
+rotation = 1.5708
+scale = Vector2(1, 0.4)
+
+[node name="bottom" type="Node2D" parent="walls"]
+
+[node name="left" parent="walls/bottom" instance=ExtResource("3_8xmsw")]
+position = Vector2(160, 795)
+rotation = 1.5708
+scale = Vector2(1, 0.4)
+
+[node name="gate" parent="walls/bottom" instance=ExtResource("3_8xmsw")]
+modulate = Color(0, 0.329412, 1, 1)
+position = Vector2(400, 795)
+rotation = 1.5708
+scale = Vector2(1, 0.2)
+isGate = true
+
+[node name="right" parent="walls/bottom" instance=ExtResource("3_8xmsw")]
+position = Vector2(640, 795)
+rotation = 1.5708
+scale = Vector2(1, 0.4)
+
+[node name="exits" type="Node2D" parent="."]
+
+[node name="top_exit" parent="exits" instance=ExtResource("4_13k7l")]
+position = Vector2(400, -3)
+scale = Vector2(10, 1)
+
+[node name="right_exit" parent="exits" instance=ExtResource("4_13k7l")]
+position = Vector2(803, 400)
+scale = Vector2(1, 10)
+
+[node name="left_exit" parent="exits" instance=ExtResource("4_13k7l")]
+position = Vector2(-3, 400)
+scale = Vector2(1, 10)
+
+[node name="bottom_exit" parent="exits" instance=ExtResource("4_13k7l")]
+position = Vector2(400, 803)
+scale = Vector2(10, 1)
+
+[connection signal="level_complete" from="." to="walls/right/gate" method="_on_level_end"]
+[connection signal="level_complete" from="." to="walls/left/gate" method="_on_level_end"]
+[connection signal="level_complete" from="." to="walls/top/gate" method="_on_level_end"]
+[connection signal="level_complete" from="." to="walls/bottom/gate" method="_on_level_end"]
+[connection signal="level_complete" from="." to="exits/top_exit" method="_on_level_complete"]
+[connection signal="level_complete" from="." to="exits/right_exit" method="_on_level_complete"]
+[connection signal="level_complete" from="." to="exits/left_exit" method="_on_level_complete"]
+[connection signal="level_complete" from="." to="exits/bottom_exit" method="_on_level_complete"]
+[connection signal="body_entered" from="exits/top_exit" to="." method="_on_top_exit_body_entered"]
+[connection signal="body_entered" from="exits/right_exit" to="." method="_on_right_exit_body_entered"]
+[connection signal="body_entered" from="exits/left_exit" to="." method="_on_left_exit_body_entered"]
+[connection signal="body_entered" from="exits/bottom_exit" to="." method="_on_bottom_exit_body_entered"]

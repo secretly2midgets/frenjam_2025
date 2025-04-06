@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="FrenJam2025_game"
-run/main_scene="uid://1asavwjf8iqe"
+run/main_scene="uid://d3pmhhc8prxkg"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
