@@ -37,7 +37,8 @@ func _physics_process(delta: float) -> void:
 	get_input()
 	var collision = move_and_collide(velocity*delta)
 	if collision:
-		if collision_layer & 0b10000 == 0b10000: #Hit by enemy
+		var hit_layer = collision.get_collider().get_collision_layer()
+		if hit_layer & 0b1000 == 0b1000: #Hit by enemy
 			health -= 1
 			if health < 0: #Player dies if they hit 0 health
 				queue_free()
