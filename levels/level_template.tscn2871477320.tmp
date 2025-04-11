@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://mg0fbn24rvru"]
+[gd_scene load_steps=4 format=3 uid="uid://mg0fbn24rvru"]
 
 [ext_resource type="Script" uid="uid://b7jvtlmoil3s1" path="res://levels/level_template.gd" id="1_skox6"]
 [ext_resource type="PackedScene" uid="uid://4sksn32cf6y6" path="res://objects/wall.tscn" id="3_8xmsw"]
-[ext_resource type="Texture2D" uid="uid://dru0luv7xgxig" path="res://levels/map_backdrop.png" id="4_8xmsw"]
 [ext_resource type="PackedScene" uid="uid://b8btbq5k6hmi6" path="res://objects/exit.tscn" id="4_13k7l"]
-[ext_resource type="Texture2D" uid="uid://blp5ob3irqppd" path="res://levels/walls.png" id="5_8xmsw"]
 
 [node name="level_template" type="Node2D"]
 script = ExtResource("1_skox6")
@@ -18,7 +16,7 @@ position = Vector2(795, 160)
 scale = Vector2(1, 0.4)
 
 [node name="gate" parent="walls/right" instance=ExtResource("3_8xmsw")]
-modulate = Color(0.247059, 0.0901961, 0.266667, 1)
+modulate = Color(0, 0.329412, 1, 1)
 position = Vector2(795, 400)
 scale = Vector2(1, 0.2)
 isGate = true
@@ -34,7 +32,7 @@ position = Vector2(5, 160)
 scale = Vector2(1, 0.4)
 
 [node name="gate" parent="walls/left" instance=ExtResource("3_8xmsw")]
-modulate = Color(0.247059, 0.0901961, 0.266667, 1)
+modulate = Color(0, 0.329412, 1, 1)
 position = Vector2(5, 400)
 scale = Vector2(1, 0.2)
 isGate = true
@@ -51,7 +49,7 @@ rotation = 1.5708
 scale = Vector2(1, 0.4)
 
 [node name="gate" parent="walls/top" instance=ExtResource("3_8xmsw")]
-modulate = Color(0.247059, 0.0901961, 0.266667, 1)
+modulate = Color(0, 0.329412, 1, 1)
 position = Vector2(400, 5)
 rotation = 1.5708
 scale = Vector2(1, 0.2)
@@ -70,7 +68,7 @@ rotation = 1.5708
 scale = Vector2(1, 0.4)
 
 [node name="gate" parent="walls/bottom" instance=ExtResource("3_8xmsw")]
-modulate = Color(0.247059, 0.0901961, 0.266667, 1)
+modulate = Color(0, 0.329412, 1, 1)
 position = Vector2(400, 795)
 rotation = 1.5708
 scale = Vector2(1, 0.2)
@@ -98,17 +96,6 @@ scale = Vector2(1, 10)
 [node name="bottom_exit" parent="exits" instance=ExtResource("4_13k7l")]
 position = Vector2(400, 803)
 scale = Vector2(10, 1)
-
-[node name="MapBackdrop" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(400, 400)
-scale = Vector2(4, 3.99)
-texture = ExtResource("4_8xmsw")
-
-[node name="Walls" type="Sprite2D" parent="."]
-position = Vector2(400, 400)
-scale = Vector2(4, 4)
-texture = ExtResource("5_8xmsw")
 
 [connection signal="level_complete" from="." to="walls/right/gate" method="_on_level_end"]
 [connection signal="level_complete" from="." to="walls/left/gate" method="_on_level_end"]
