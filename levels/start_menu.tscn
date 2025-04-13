@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3pmhhc8prxkg"]
+[gd_scene load_steps=4 format=3 uid="uid://d3pmhhc8prxkg"]
 
 [ext_resource type="Script" uid="uid://civ1xwlq3gefo" path="res://levels/start_menu.gd" id="1_nl3ga"]
+[ext_resource type="Texture2D" uid="uid://bxnuc766wlti6" path="res://levels/bone_TV.png" id="2_nt4di"]
+[ext_resource type="Texture2D" uid="uid://bgjpsm8bgicu6" path="res://levels/title_screen.png" id="3_g4rei"]
 
 [node name="start_menu" type="Node2D"]
 script = ExtResource("1_nl3ga")
@@ -12,11 +14,21 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 300.0
-offset_top = 350.0
+offset_top = 326.0
 offset_right = 500.0
-offset_bottom = 450.0
+offset_bottom = 426.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Start Game"
+
+[node name="BoneTv" type="Sprite2D" parent="."]
+position = Vector2(397, 168)
+scale = Vector2(6, 6)
+texture = ExtResource("2_nt4di")
+
+[node name="TitleScreen" type="Sprite2D" parent="."]
+position = Vector2(400, 400)
+scale = Vector2(4, 4)
+texture = ExtResource("3_g4rei")
 
 [connection signal="pressed" from="start_button" to="." method="_on_start_button_pressed"]
