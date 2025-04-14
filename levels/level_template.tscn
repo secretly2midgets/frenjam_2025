@@ -114,6 +114,12 @@ position = Vector2(400, 400)
 scale = Vector2(4, 4)
 texture = ExtResource("5_8xmsw")
 
+[node name="Score" type="RichTextLabel" parent="."]
+offset_left = 650.0
+offset_top = 25.0
+offset_right = 750.0
+offset_bottom = 50.0
+
 [connection signal="level_complete" from="." to="walls/right/gate" method="_on_level_end"]
 [connection signal="level_complete" from="." to="walls/left/gate" method="_on_level_end"]
 [connection signal="level_complete" from="." to="walls/top/gate" method="_on_level_end"]

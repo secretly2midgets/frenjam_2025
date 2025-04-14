@@ -9,9 +9,10 @@ extends CharacterBody2D
 
 @export var speed: float = 200
 var direction: Vector2
+var health: int = 1
 
 func _ready() -> void:
-	direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
+	direction = Vector2.RIGHT.rotated(randf_range(0, 2.0*PI))
 	$Sprite2D.play()
 
 func _physics_process(delta: float) -> void:
@@ -24,7 +25,10 @@ func _physics_process(delta: float) -> void:
 	
 	if collision:
 		var hit_layer = collision.get_collider().get_collision_layer()
-		if hit_layer & 0b1 == 0b1: # wall
+		if (hit_layer & 0b1 == 0b1) || (hit_layer & 0b1000 == 0b1000): # wall or other enemy
 			direction = direction.bounce(collision.get_normal()) 
 		elif hit_layer & 0b100 == 0b100: # bullet
-			queue_free()
+			health -= 1
+			if health <= 0:
+				get_parent().kill_count += 1
+				queue_free()

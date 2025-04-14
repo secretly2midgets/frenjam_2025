@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://44nvna3y2hri"]
+[gd_scene load_steps=7 format=3 uid="uid://44nvna3y2hri"]
 
 [ext_resource type="PackedScene" uid="uid://bwwhocnkph8ba" path="res://mobs/enemies/default_enemy.tscn" id="1_p1gq1"]
 [ext_resource type="Texture2D" uid="uid://cst3kg57otl5m" path="res://mobs/undertale_dog/undertale_1.png" id="2_eapro"]
+[ext_resource type="Script" uid="uid://ck7pwgmld2vi2" path="res://mobs/enemies/undertale_enemy.gd" id="2_ihkss"]
 [ext_resource type="Texture2D" uid="uid://c26wmhr62n0ou" path="res://mobs/undertale_dog/undertale_2.png" id="3_ihkss"]
 [ext_resource type="Texture2D" uid="uid://cj32646nm7tm0" path="res://mobs/undertale_dog/undertale_3.png" id="4_wagis"]
 
@@ -23,6 +24,7 @@ animations = [{
 }]
 
 [node name="default_enemy" instance=ExtResource("1_p1gq1")]
+script = ExtResource("2_ihkss")
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(1.5, 1.5)
