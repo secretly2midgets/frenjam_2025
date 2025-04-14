@@ -15,7 +15,10 @@ var leaving: bool = false
 var level_started: bool = true # determine whether or not to start spawning enemies yet.  defaults true for level 1
 var scrolling_direction := Vector2(0,0)
 
-var Enemy = preload("res://mobs/enemies/default_enemy.tscn")
+var DefaultEnemy = preload("res://mobs/enemies/default_enemy.tscn")
+var GrowlitheEnemy = preload("res://mobs/enemies/growlithe_enemy.tscn")
+var MegamanEnemy = preload("res://mobs/enemies/megaman_dog_enemy.tscn")
+var UndertaleEnemy = preload("res://mobs/enemies/undertale_enemy.tscn")
 var enemy_array: Array[Node]
 
 var Player_scene = preload("res://mobs/player/player.tscn")
@@ -70,7 +73,7 @@ func _process(_delta: float) -> void:
 # reimplement for a level if you want to spawn more (or different) enemies at a time
 func spawn_enemies() -> void:
 	if should_i_spawn_enemies() and level_started:
-		var e = Enemy.instantiate()
+		var e = DefaultEnemy.instantiate()
 		add_child(e)
 		enemy_array.append(e)
 		last_enemy = Time.get_unix_time_from_system()

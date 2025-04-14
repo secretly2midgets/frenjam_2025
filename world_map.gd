@@ -37,9 +37,9 @@ func get_next_level(level_pos: Vector2i, direction: String) -> String:
 # TODO actually set this up instead of hard-coding
 func set_world() -> void:
 	world_map = []
-	var level_A: String = "res://levels/test_level.tscn"
-	var level_B: String = "res://levels/test_level.tscn"
-	var level_C: String = "res://levels/test_level.tscn"
+	var level_A: String = "res://levels/level_a.tscn"
+	var level_B: String = "res://levels/level_b.tscn"
+	var level_C: String = "res://levels/level_c.tscn"
 	var column = [level_A, level_B, level_C]
 	world_map.append(column)
 	world_map.append(column)

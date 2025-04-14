@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://44nvna3y2hri"]
+
+[ext_resource type="PackedScene" uid="uid://bwwhocnkph8ba" path="res://mobs/enemies/default_enemy.tscn" id="1_p1gq1"]
+[ext_resource type="Texture2D" uid="uid://cst3kg57otl5m" path="res://mobs/undertale_dog/undertale_1.png" id="2_eapro"]
+[ext_resource type="Texture2D" uid="uid://c26wmhr62n0ou" path="res://mobs/undertale_dog/undertale_2.png" id="3_ihkss"]
+[ext_resource type="Texture2D" uid="uid://cj32646nm7tm0" path="res://mobs/undertale_dog/undertale_3.png" id="4_wagis"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wjhe8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_eapro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ihkss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wagis")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="default_enemy" instance=ExtResource("1_p1gq1")]
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_wjhe8")
+frame = 2
+frame_progress = 0.909988

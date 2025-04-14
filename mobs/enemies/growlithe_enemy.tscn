@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7pto6inysi27"]
+
+[ext_resource type="PackedScene" uid="uid://bwwhocnkph8ba" path="res://mobs/enemies/default_enemy.tscn" id="1_5iqc3"]
+[ext_resource type="Texture2D" uid="uid://d2p74362al5qw" path="res://mobs/growlithe/growlithe_1.png" id="2_7n2i6"]
+[ext_resource type="Texture2D" uid="uid://s88cnjf4qdll" path="res://mobs/growlithe/growlithe_2.png" id="3_2yqvs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kkh87"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7n2i6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2yqvs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="growlithe_enemy" instance=ExtResource("1_5iqc3")]
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1.3, 1.3)
+sprite_frames = SubResource("SpriteFrames_kkh87")
+frame_progress = 0.703691

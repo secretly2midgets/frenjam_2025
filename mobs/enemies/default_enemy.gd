@@ -11,11 +11,16 @@ extends CharacterBody2D
 var direction: Vector2
 
 func _ready() -> void:
-	position = Vector2(200.0, 200.0)
 	direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
+	$Sprite2D.play()
 
 func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(speed * direction * delta)
+	
+	if direction.x > 0:
+		$Sprite2D.flip_h = true
+	else:
+		$Sprite2D.flip_h = false
 	
 	if collision:
 		var hit_layer = collision.get_collider().get_collision_layer()

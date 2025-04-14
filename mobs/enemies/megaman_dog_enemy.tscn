@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5h6k6h0rklxn"]
+
+[ext_resource type="PackedScene" uid="uid://bwwhocnkph8ba" path="res://mobs/enemies/default_enemy.tscn" id="1_sn4oi"]
+[ext_resource type="Texture2D" uid="uid://dpgjyy6gwx2qb" path="res://mobs/megaman_dog/meganman_dog_1.png" id="2_q47ew"]
+[ext_resource type="Texture2D" uid="uid://33fpsu4lof0r" path="res://mobs/megaman_dog/meganman_dog_2.png" id="3_uevy5"]
+[ext_resource type="Texture2D" uid="uid://d1vo7io73nw60" path="res://mobs/megaman_dog/meganman_dog_sitting.png" id="4_wvsq8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_83byu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q47ew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uevy5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_wvsq8")
+}],
+"loop": true,
+"name": &"sit",
+"speed": 5.0
+}]
+
+[node name="default_enemy" instance=ExtResource("1_sn4oi")]
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1.4, 1.4)
+sprite_frames = SubResource("SpriteFrames_83byu")
+frame_progress = 0.307485
