@@ -1,6 +1,6 @@
 extends Node2D
 
-signal level_complete
+signal level_complete(level_pos)
 
 @export var time_between_enemies: float = 1.0
 @export var scrolling_speed: float = 200
@@ -21,6 +21,7 @@ var enemy_array: Array[Node]
 var Player_scene = preload("res://mobs/player/player.tscn")
 var player: Node
 
+var level_pos := Vector2i.ZERO
 var next_level_scene = load("res://levels/test_level.tscn")
 
 # ready runs when the scene is added to the tree
@@ -89,11 +90,14 @@ func is_level_complete() -> bool:
 
 # emits the level complete signal and kills all remaining enemies
 func end_level() -> void:
-	level_complete.emit()
+	level_complete.emit(level_pos)
 	for enemy in enemy_array:
 		if enemy:
 			enemy.queue_free()
 	already_ended_level = true
+
+func set_level_pos(in_pos: Vector2i) -> void:
+	level_pos = in_pos
 
 # ============================================================================
 # exit zone functions below, they're all the same except for direction
@@ -109,7 +113,8 @@ func _on_top_exit_body_entered(body: Node2D) -> void:
 		body.process_mode = Node.PROCESS_MODE_DISABLED # freeze the player
 		
 		# load the new level and hand player to it, then add new level to the tree
-		var next_level = next_level_scene.instantiate()
+		var next_level = load(WorldMap.get_next_level(level_pos, "up")).instantiate()
+		next_level.set_level_pos(level_pos - Vector2i(0, 1))
 		next_level.position = Vector2.UP*level_size  # have to move new level before reparenting player
 		get_node("player").reparent(next_level, true)
 		get_tree().root.call_deferred("add_child", next_level)
@@ -127,7 +132,8 @@ func _on_right_exit_body_entered(body: Node2D) -> void:
 		body.process_mode = Node.PROCESS_MODE_DISABLED # freeze the player
 		
 		# load the new level and hand player to it, then add new level to the tree
-		var next_level = next_level_scene.instantiate()
+		var next_level = load(WorldMap.get_next_level(level_pos, "right")).instantiate()
+		next_level.set_level_pos(level_pos + Vector2i(1, 0))
 		next_level.position = Vector2.RIGHT*level_size  # have to move new level before reparenting player
 		get_node("player").reparent(next_level, true)
 		get_tree().root.call_deferred("add_child", next_level)
@@ -145,7 +151,8 @@ func _on_bottom_exit_body_entered(body: Node2D) -> void:
 		body.process_mode = Node.PROCESS_MODE_DISABLED # freeze the player
 		
 		# load the new level and hand player to it, then add new level to the tree
-		var next_level = next_level_scene.instantiate()
+		var next_level = load(WorldMap.get_next_level(level_pos, "down")).instantiate()
+		next_level.set_level_pos(level_pos + Vector2i(0, 1))
 		next_level.position = Vector2.DOWN*level_size  # have to move new level before reparenting player
 		get_node("player").reparent(next_level, true)
 		get_tree().root.call_deferred("add_child", next_level)
@@ -163,7 +170,8 @@ func _on_left_exit_body_entered(body: Node2D) -> void:
 		body.process_mode = Node.PROCESS_MODE_DISABLED # freeze the player
 		
 		# load the new level and hand player to it, then add new level to the tree
-		var next_level = next_level_scene.instantiate()
+		var next_level = load(WorldMap.get_next_level(level_pos, "left")).instantiate()
+		next_level.set_level_pos(level_pos - Vector2i(1, 0))
 		next_level.position = Vector2.LEFT*level_size  # have to move new level before reparenting player
 		get_node("player").reparent(next_level, true)
 		get_tree().root.call_deferred("add_child", next_level)

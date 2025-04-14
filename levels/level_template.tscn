@@ -22,6 +22,7 @@ modulate = Color(0.247059, 0.0901961, 0.266667, 1)
 position = Vector2(795, 400)
 scale = Vector2(1, 0.2)
 isGate = true
+gate_side = "right"
 
 [node name="bottom" parent="walls/right" instance=ExtResource("3_8xmsw")]
 position = Vector2(795, 640)
@@ -38,6 +39,7 @@ modulate = Color(0.247059, 0.0901961, 0.266667, 1)
 position = Vector2(5, 400)
 scale = Vector2(1, 0.2)
 isGate = true
+gate_side = "left"
 
 [node name="bottom" parent="walls/left" instance=ExtResource("3_8xmsw")]
 position = Vector2(5, 640)
@@ -56,6 +58,7 @@ position = Vector2(400, 5)
 rotation = 1.5708
 scale = Vector2(1, 0.2)
 isGate = true
+gate_side = "top"
 
 [node name="right" parent="walls/top" instance=ExtResource("3_8xmsw")]
 position = Vector2(640, 5)
@@ -75,6 +78,7 @@ position = Vector2(400, 795)
 rotation = 1.5708
 scale = Vector2(1, 0.2)
 isGate = true
+gate_side = "down"
 
 [node name="right" parent="walls/bottom" instance=ExtResource("3_8xmsw")]
 position = Vector2(640, 795)
